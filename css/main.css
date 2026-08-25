@@ -242,7 +242,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 /* hero gun visual */
 .hero-gun {
   position: absolute;
-  top: 0;
+  top: 23%;
   left: 50%;
   width: 110%;
   z-index: 1;
