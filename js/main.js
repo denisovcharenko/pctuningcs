@@ -6,7 +6,12 @@ if (header) {
   }, { passive: true });
 }
 
-/* FAQ is now a static grid — no accordion JS needed */
+/* ─── FAQ ACCORDION ─── */
+document.querySelectorAll('.faq-qitem').forEach(item => {
+  item.querySelector('.faq-qitem-q')?.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
 
 /* ─── MODAL ─── */
 const overlay = document.getElementById('modal-overlay');
