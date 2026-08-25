@@ -251,51 +251,75 @@
 <script src="js/main.js"></script>
 
 <!-- DEV: position sliders — remove before final deploy -->
-<div id="gun-devtool" style="
-  position: fixed; bottom: 24px; left: 24px; z-index: 9999;
-  background: #191919; border: 1px solid #c5e000; border-radius: 6px;
-  padding: 14px 18px; font-family: monospace; font-size: 12px;
-  color: #fff; min-width: 240px; box-shadow: 0 4px 24px rgba(0,0,0,0.6);
-  user-select: none;
-">
-  <div style="color:#c5e000; font-weight:700; margin-bottom:12px; letter-spacing:1px; font-size:10px; text-transform:uppercase;">Dev Controls</div>
+<div id="gun-devtool" style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:monospace;font-size:12px;user-select:none;">
 
-  <div style="color:#666; font-size:9px; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:5px;">Гармата — top</div>
-  <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-    <input type="range" id="gun-top-slider" min="-50" max="80" value="23" step="1"
-      style="flex:1; accent-color:#c5e000; cursor:pointer;" />
-    <span id="gun-top-val" style="color:#c5e000; min-width:40px; text-align:right; font-weight:700;">23%</span>
+  <!-- collapsed toggle button -->
+  <button id="dev-toggle" onclick="devToggle()" style="
+    display:block; background:#191919; border:1px solid #c5e000; border-radius:4px;
+    color:#c5e000; font-family:monospace; font-size:10px; font-weight:700;
+    letter-spacing:1px; padding:6px 12px; cursor:pointer; text-transform:uppercase;
+    box-shadow:0 2px 12px rgba(0,0,0,0.5);
+  ">⚙ Dev</button>
+
+  <!-- expanded panel -->
+  <div id="dev-panel" style="
+    display:none; margin-top:6px;
+    background:#191919; border:1px solid #c5e000; border-radius:6px;
+    padding:14px 16px; color:#fff; min-width:250px;
+    box-shadow:0 4px 24px rgba(0,0,0,0.6);
+  ">
+    <div style="color:#c5e000;font-weight:700;margin-bottom:12px;letter-spacing:1px;font-size:10px;text-transform:uppercase;">Dev Controls</div>
+
+    <div style="color:#555;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:4px;">Гармата — top</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+      <input type="range" id="gun-top-slider" min="-50" max="80" value="23" step="1"
+        style="flex:1;accent-color:#c5e000;cursor:pointer;" />
+      <span id="gun-top-val" style="color:#c5e000;min-width:44px;text-align:right;font-weight:700;">23%</span>
+    </div>
+
+    <div style="color:#555;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:4px;">Логотип — відступ зверху</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <input type="range" id="logo-top-slider" min="-200" max="400" value="40" step="2"
+        style="flex:1;accent-color:#c5e000;cursor:pointer;" />
+      <span id="logo-top-val" style="color:#c5e000;min-width:44px;text-align:right;font-weight:700;">40px</span>
+    </div>
+
+    <button id="dev-copy-btn" onclick="devCopy()" style="
+      width:100%;background:#c5e000;border:none;border-radius:3px;
+      color:#191919;font-family:monospace;font-size:10px;font-weight:700;
+      letter-spacing:0.8px;text-transform:uppercase;padding:7px 0;cursor:pointer;
+    ">Копіювати налаштування</button>
   </div>
-
-  <div style="color:#666; font-size:9px; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:5px;">Логотип — відступ зверху</div>
-  <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-    <input type="range" id="logo-top-slider" min="0" max="400" value="40" step="2"
-      style="flex:1; accent-color:#c5e000; cursor:pointer;" />
-    <span id="logo-top-val" style="color:#c5e000; min-width:40px; text-align:right; font-weight:700;">40px</span>
-  </div>
-
-  <button onclick="document.getElementById('gun-devtool').remove()" style="
-    width:100%; background:transparent; border:1px solid #333; color:#666;
-    border-radius:3px; padding:5px 0; font-size:10px; cursor:pointer;
-    font-family:monospace; letter-spacing:0.5px;
-  ">Закрити</button>
 </div>
+
 <script>
 (function(){
-  const gunSlider = document.getElementById('gun-top-slider');
-  const gunVal    = document.getElementById('gun-top-val');
-  const gun       = document.querySelector('.hero-gun');
-  gunSlider.addEventListener('input', function(){
-    gun.style.top = this.value + '%';
-    gunVal.textContent = this.value + '%';
+  function devToggle(){
+    const p = document.getElementById('dev-panel');
+    p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  }
+  window.devToggle = devToggle;
+
+  function devCopy(){
+    const gun  = document.getElementById('gun-top-slider').value;
+    const logo = document.getElementById('logo-top-slider').value;
+    const text = `gun top: ${gun}%\nlogo padding-top: ${logo}px`;
+    navigator.clipboard.writeText(text).then(function(){
+      const btn = document.getElementById('dev-copy-btn');
+      btn.textContent = 'Скопійовано ✓';
+      setTimeout(function(){ btn.textContent = 'Копіювати налаштування'; }, 1800);
+    });
+  }
+  window.devCopy = devCopy;
+
+  document.getElementById('gun-top-slider').addEventListener('input', function(){
+    document.querySelector('.hero-gun').style.top = this.value + '%';
+    document.getElementById('gun-top-val').textContent = this.value + '%';
   });
 
-  const logoSlider = document.getElementById('logo-top-slider');
-  const logoVal    = document.getElementById('logo-top-val');
-  const heroContent = document.querySelector('.hero-content');
-  logoSlider.addEventListener('input', function(){
-    heroContent.style.paddingTop = this.value + 'px';
-    logoVal.textContent = this.value + 'px';
+  document.getElementById('logo-top-slider').addEventListener('input', function(){
+    document.querySelector('.hero-content').style.paddingTop = this.value + 'px';
+    document.getElementById('logo-top-val').textContent = this.value + 'px';
   });
 })();
 </script>
