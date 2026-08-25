@@ -249,5 +249,50 @@
 </div>
 
 <script src="js/main.js"></script>
+
+<!-- DEV: gun position slider — remove before final deploy -->
+<div id="gun-devtool" style="
+  position: fixed; bottom: 24px; left: 24px; z-index: 9999;
+  background: #191919; border: 1px solid #c5e000; border-radius: 6px;
+  padding: 14px 18px; font-family: monospace; font-size: 12px;
+  color: #fff; min-width: 220px; box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+  user-select: none;
+">
+  <div style="color:#c5e000; font-weight:700; margin-bottom:10px; letter-spacing:1px; font-size:10px; text-transform:uppercase;">Gun Position</div>
+  <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+    <span style="color:#888; font-size:10px; white-space:nowrap;">top:</span>
+    <input type="range" id="gun-top-slider" min="-50" max="80" value="0" step="1"
+      style="flex:1; accent-color:#c5e000; cursor:pointer;" />
+    <span id="gun-top-val" style="color:#c5e000; min-width:40px; text-align:right; font-weight:700;">0%</span>
+  </div>
+  <div style="display:flex; gap:8px; margin-top:4px;">
+    <button onclick="document.getElementById('gun-devtool').remove()" style="
+      flex:1; background:transparent; border:1px solid #444; color:#888;
+      border-radius:3px; padding:5px 0; font-size:10px; cursor:pointer;
+      font-family:monospace; letter-spacing:0.5px;
+    ">Закрити</button>
+  </div>
+</div>
+<script>
+(function(){
+  const slider = document.getElementById('gun-top-slider');
+  const val = document.getElementById('gun-top-val');
+  const gun = document.querySelector('.hero-gun');
+  slider.addEventListener('input', function(){
+    const v = this.value;
+    gun.style.top = v + '%';
+    // Keep animation working — update keyframes inline
+    const existing = document.getElementById('gun-dev-style');
+    const style = existing || document.createElement('style');
+    style.id = 'gun-dev-style';
+    style.textContent = `@keyframes gunFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0px); }
+      50%       { transform: translateX(-50%) translateY(-18px); }
+    }`;
+    if (!existing) document.head.appendChild(style);
+    val.textContent = v + '%';
+  });
+})();
+</script>
 </body>
 </html>
