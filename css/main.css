@@ -242,9 +242,8 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 /* hero gun visual */
 .hero-gun {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
   width: 110%;
   z-index: 1;
   pointer-events: none;
@@ -253,8 +252,8 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   animation: gunFloat 7s ease-in-out 1.2s infinite;
 }
 @keyframes gunFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-18px); }
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50%       { transform: translateX(-50%) translateY(-18px); }
 }
 
 /* hero stats strip */
