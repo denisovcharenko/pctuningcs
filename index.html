@@ -40,7 +40,8 @@
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <img src="assets/hero-gun.png" alt="" class="hero-gun" aria-hidden="true" />
+  <div id="us-hero-scene" class="hero-unicorn-scene"></div>
+  <img src="assets/hero-gun.png" alt="" class="hero-gun" aria-hidden="true" style="display:none;" />
 
   <div class="hero-content">
     <img src="assets/logo-hero.svg" alt="Kaizen" class="hero-logo-img" />
@@ -253,6 +254,26 @@
 </div>
 
 <script src="js/main.js"></script>
+<script>
+(function () {
+  var s = document.createElement('script');
+  s.src = 'https://cdn.unicorn.studio/v2.2.12/unicornStudio.umd.js';
+  s.onload = function () {
+    fetch('assets/hero-scene.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        UnicornStudio.addScene({
+          elementId: 'us-hero-scene',
+          fps: 60,
+          scale: 1,
+          dpi: 1.5,
+          projectData: data
+        });
+      });
+  };
+  document.head.appendChild(s);
+})();
+</script>
 
 <!-- DEV: position sliders — remove before final deploy -->
 <div id="gun-devtool" style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:monospace;font-size:12px;user-select:none;">
