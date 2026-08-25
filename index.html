@@ -256,11 +256,18 @@
 <script src="js/main.js"></script>
 <script>
 (function () {
-  var s = document.createElement('script');
-  s.src = 'https://cdn.unicorn.studio/v2.2.12/unicornStudio.umd.js';
-  s.onload = function () {
+  var CDNS = [
+    'https://cdn.unicorn.studio/v2.2.12/unicornStudio.umd.js',
+    'https://cdn.unicorn.studio/v1.4.0/unicornStudio.umd.js'
+  ];
+
+  function initScene() {
+    if (!window.UnicornStudio) { console.error('[US] SDK not on window'); return; }
     fetch('assets/hero-scene.json')
-      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.ok) throw new Error('fetch ' + r.status);
+        return r.json();
+      })
       .then(function (data) {
         UnicornStudio.addScene({
           elementId: 'us-hero-scene',
@@ -268,10 +275,23 @@
           scale: 1,
           dpi: 1.5,
           projectData: data
-        });
-      });
-  };
-  document.head.appendChild(s);
+        }).then(function () {
+          console.log('[US] scene loaded OK');
+        }).catch(function (e) { console.error('[US] addScene error', e); });
+      })
+      .catch(function (e) { console.error('[US] fetch error', e); });
+  }
+
+  function tryLoad(idx) {
+    if (idx >= CDNS.length) { console.error('[US] all CDN URLs failed'); return; }
+    var s = document.createElement('script');
+    s.src = CDNS[idx];
+    s.onload = function () { console.log('[US] loaded from', CDNS[idx]); initScene(); };
+    s.onerror = function () { console.warn('[US] CDN failed:', CDNS[idx]); tryLoad(idx + 1); };
+    document.head.appendChild(s);
+  }
+
+  tryLoad(0);
 })();
 </script>
 
