@@ -1136,3 +1136,113 @@ body.nav-open .nav-toggle span::after  { transform: translate(-50%, -50%) rotate
   .faq-title { margin-top: 12px; }
   .faq-cta { padding: 18px 20px; }
 }
+
+/* ─── TESTIMONIALS MASONRY ─── */
+.tm-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--tm-cols, 3), 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.tm-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tm-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.tm-card img {
+  border-radius: 2px;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  will-change: transform;
+}
+
+.tm-card:hover img { opacity: 0.75; transform: scale(1.01); }
+.tm-card.is-active img { visibility: hidden; }
+
+/* ─── LIGHTBOX ─── */
+.tm-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: background 0.3s;
+}
+
+.tm-lightbox.open {
+  background: rgba(0, 0, 0, 0.9);
+  pointer-events: all;
+}
+
+.tm-lightbox-img {
+  max-width: min(90vw, 540px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 2px;
+  display: block;
+  will-change: transform;
+  transform-origin: center center;
+  transition: opacity 0.15s;
+}
+
+.tm-lb-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  transition: background 0.2s, color 0.2s;
+}
+.tm-lb-close:hover { background: rgba(255, 255, 255, 0.14); color: var(--white); }
+
+.tm-lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  transition: background 0.2s, color 0.2s;
+}
+.tm-lb-nav:hover { background: rgba(255, 255, 255, 0.14); color: var(--white); }
+.tm-lb-prev { left: 20px; }
+.tm-lb-next { right: 20px; }
+
+@media (max-width: 599px) {
+  .tm-lb-prev { left: 8px; }
+  .tm-lb-next { right: 8px; }
+  .tm-lb-close { top: 12px; right: 12px; }
+}
