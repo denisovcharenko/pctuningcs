@@ -40,199 +40,141 @@
   </div>
 </header>
 
-<!-- ─── PRICING SECTION ─── -->
-<main class="pricing-hero">
-  <section class="pricing-section">
-    <div class="pricing-glow"></div>
+<!-- ─── SERVICES ─── -->
+<main class="sv-main">
+
+  <!-- Hero headline -->
+  <section class="sv-hero">
+    <div class="sv-hero-inner">
+      <h1 class="sv-title">ТОНКАЯ НАСТРОЙКА <span class="sv-title-accent">СИСТЕМЫ</span></h1>
+    </div>
+  </section>
+
+  <!-- Ticker -->
+  <div class="sv-ticker" aria-hidden="true">
+    <div class="sv-ticker-track">
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Kaizen — это про контроль.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Контроль над системой.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Контроль над задержкой.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Контроль над производительностью.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Kaizen — настройка созданная инженерами.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Kaizen — это про контроль.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Контроль над системой.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Контроль над задержкой.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Контроль над производительностью.</span>
+      <span class="sv-tick-sep">»</span><span class="sv-tick-text">Kaizen — настройка созданная инженерами.</span>
+    </div>
+  </div>
+
+  <!-- Pricing cards -->
+  <section class="sv-cards-section">
     <div class="container">
-      <!-- Section header -->
-      <div class="pricing-label-row">
-        <div class="pricing-label-line left"></div>
-        <div class="pricing-badge">Настройка созданная инженерами</div>
-        <div class="pricing-label-line right"></div>
-      </div>
-      <div style="text-align:center;margin-bottom:16px;">
-        <h1 style="display:inline;">
-          <span class="pricing-heading">Тонкая настройка </span><span class="pricing-heading pricing-heading-accent" style="position:relative;">системы<span class="pricing-heading-underline"></span></span>
-        </h1>
-      </div>
-      <p class="pricing-desc">Kaizen — это про контроль. Контроль над системой. Контроль над задержкой. Контроль над производительностью.</p>
+      <div class="sv-cards">
 
-      <!-- Cards -->
-      <div class="pricing-cards">
-
-        <!-- MINIMAL -->
-        <div class="pricing-card">
-          <div class="pricing-card-inner">
-            <div class="pricing-card-header">
-              <div class="pricing-card-name-group">
-                <div class="pricing-card-eyebrow">Тариф</div>
-                <div class="pricing-card-name">«Minimal»</div>
-              </div>
+        <!-- ── MINIMAL ── -->
+        <div class="sv-card sv-card--light">
+          <div class="sv-card-body">
+            <div class="sv-card-header">
+              <span class="sv-card-star">★</span>
             </div>
-            <p class="pricing-card-desc">Стартовый пакет — убираем лишнюю нагрузку с системы, делаем Windows чище и отзывчивее без агрессивных вмешательств</p>
-            <div class="pricing-features">
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Полная оптимизация Windows: кастомный Playbook для Windows 11 24H2</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Debloat драйвера NVIDIA / AMD с P0 State Lock. Отключение HDCP / Cuda P2 / MPO</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Настройка Presentation Mode (FSO / FSE)</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">MSI Mode, Interrupt Affinity, Cpu Setter, Nvidia Reflex / LLM</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Настройка сети: QoS планировщик пакетов, ExitLag</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Кастомная схема электропитания, отключение Power Saving функций</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Настройка Core Parking алгоритмов</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Советы по монитору: OverDrive, G-Sync, DPI, Polling Rate, Motion Sync</div>
-              </div>
-            </div>
-            <div class="pricing-card-footer">
-              <div class="pricing-price-label">Стоимость</div>
-              <div class="pricing-price-row">
-                <span class="pricing-price-number">3 000</span>
-                <span class="pricing-price-currency"> ₽</span>
-              </div>
-              <button class="btn-pricing btn-pricing-default" data-modal="open">Приобрести</button>
-            </div>
+            <h2 class="sv-card-name">«MINIMAL»</h2>
+            <p class="sv-card-desc">Стартовый пакет — убираем лишнюю нагрузку с системы, делаем Windows чище и отзывчивее без агрессивных вмешательств</p>
+            <ul class="sv-features">
+              <li>Полная оптимизация Windows: кастомный Playbook для</li>
+              <li>Debloat драйвера NVIDIA / AMD с P0 State Lock. Отключение HDCP / Cuda P2 / MPO</li>
+              <li>Настройка Presentation Mode (FSO / FSE)</li>
+              <li>MSI Mode, Interrupt Affinity, Cpu Setter, Nvidia Reflex / LLM</li>
+              <li>Настройка сети: QoS планировщик пакетов, ExitLag</li>
+              <li>Кастомная схема электропитания, отключение Power Saving функций</li>
+              <li>Настройка Core Parking алгоритмов</li>
+              <li>Советы по монитору: OverDrive, G-Sync, DPI, Polling Rate, Motion Sync</li>
+            </ul>
           </div>
+          <div class="sv-card-footer">
+            <div class="sv-price">3 000 <span class="sv-rub">₽</span></div>
+            <button class="sv-btn sv-btn--dark" data-modal="open">
+              <span>Приобрести</span>
+              <span class="sv-btn-circle">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="sv-card-calli" aria-hidden="true"></div>
         </div>
 
-        <!-- STANDARD -->
-        <div class="pricing-card">
-          <div class="pricing-card-inner">
-            <div class="pricing-card-header">
-              <div class="pricing-card-name-group">
-                <div class="pricing-card-eyebrow">Тариф</div>
-                <div class="pricing-card-name">«Standard»</div>
+        <!-- ── STANDARD ── -->
+        <div class="sv-card sv-card--lime">
+          <div class="sv-card-body">
+            <div class="sv-card-header">
+              <span class="sv-card-star">★</span>
+              <div class="sv-support">
+                <span class="sv-support-label">Поддержка после настройки</span>
+                <span class="sv-support-val">1 месяц</span>
               </div>
             </div>
-            <p class="pricing-card-desc">Раскрываем потенциал железа через настройку системы, BIOS и базовый overclock/undervolt под реальную нагрузку</p>
-            <div class="pricing-support-panel">
-              <span class="pricing-support-panel-label">Поддержка после настройки</span>
-              <span class="pricing-support-panel-value">1 месяц</span>
-            </div>
-            <div class="pricing-features">
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Всё содержимое пакета Minimal</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Базовый разгон ядра видеокарты и видеопамяти. Фиксирование частоты P0</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Тестирование видеокарты в разных нагрузках</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Базовый разгон ОЗУ: первичные, вторичные, третичные тайминги</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Фиксированная частота / PBO и напряжение на процессор</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">LLC, C-State, Curve Optimizer, Power Limits</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Стресс-тест: Prime95, TestMem5, OCCT, Karhu и др.</div>
-              </div>
-            </div>
-            <div class="pricing-card-footer">
-              <div class="pricing-price-label">Стоимость</div>
-              <div class="pricing-price-row">
-                <span class="pricing-price-number">5 500</span>
-                <span class="pricing-price-currency"> ₽</span>
-              </div>
-              <button class="btn-pricing btn-pricing-default" data-modal="open">Приобрести</button>
-            </div>
+            <h2 class="sv-card-name">«STANDARD»</h2>
+            <p class="sv-card-desc">Раскрываем потенциал железа через настройку системы, BIOS и базовый overclock/undervolt под реальную нагрузку</p>
+            <ul class="sv-features">
+              <li>Всё содержимое пакета Minimal</li>
+              <li>Базовый разгон ядра видеокарты и видеопамяти. Фикс</li>
+              <li>Тестирование видеокарты в разных нагрузках</li>
+              <li>Базовый разгон ОЗУ: первичные, вторичные, третичные</li>
+              <li>Фиксированная частота / PBO и напряжение на процесс</li>
+              <li>LLC, C-State, Curve Optimizer, Power Limits</li>
+              <li>Стресс-тест: Prime95, TestMem5, OCCT, Karhu и др.</li>
+            </ul>
           </div>
+          <div class="sv-card-footer">
+            <div class="sv-price">5 500 <span class="sv-rub">₽</span></div>
+            <button class="sv-btn sv-btn--dark" data-modal="open">
+              <span>Приобрести</span>
+              <span class="sv-btn-circle">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="sv-card-calli sv-card-calli--lime" aria-hidden="true"></div>
         </div>
 
-        <!-- PREMIUM -->
-        <div class="pricing-card premium">
-          <div class="pricing-card-inner">
-            <div class="pricing-card-header">
-              <div class="pricing-card-name-group">
-                <div class="pricing-card-eyebrow">Тариф</div>
-                <div class="pricing-card-name">«Premium»</div>
+        <!-- ── PREMIUM ── -->
+        <div class="sv-card sv-card--dark">
+          <div class="sv-card-body">
+            <div class="sv-card-header">
+              <span class="sv-card-star sv-card-star--lime">★</span>
+              <div class="sv-support sv-support--dark">
+                <span class="sv-support-label">Поддержка после настройки</span>
+                <span class="sv-support-val">3 месяца</span>
               </div>
             </div>
-            <p class="pricing-card-desc">Для тех, кто хочет выжать из системы максимум — без подхода «накрутим всё, а дальше как повезёт». Стабильный frametime, нормальные 1% low, предсказуемый отклик мыши</p>
-            <div class="pricing-support-panel pricing-support-panel--premium">
-              <span class="pricing-support-panel-label">Поддержка после настройки</span>
-              <span class="pricing-support-panel-value">3 месяца</span>
-            </div>
-            <div class="pricing-features">
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Содержимое Minimal и Standard пакетов</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Максимально возможный разгон без ущерба для комплектующих</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Разгон ОЗУ со всеми напряжениями (DRAM VDD/VDDQ, SOC, VDDIO, VDDP, VDDG, VDD MISC)</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Углублённый подбор таймингов: первичные, вторичные, третичные, tRFC, tREFI и т.д.</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Комплексная оптимизация для раскрытия потенциала ПК без потери стабильности</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Поиск узких мест системы, консультации по модернизации</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Полная настройка сети: DNS, DHCP, RSS, Nagle алгоритмы</div>
-              </div>
-              <div class="pricing-feature">
-                <div class="pricing-feature-bullet">▪</div>
-                <div class="pricing-feature-text">Помощь с дополнительным ПО: OBS, Microsoft Office и другое</div>
-              </div>
-            </div>
-            <div class="pricing-card-footer">
-              <div class="pricing-price-label">Стоимость</div>
-              <div class="pricing-price-row">
-                <span class="pricing-price-number">8 000</span>
-                <span class="pricing-price-currency"> ₽</span>
-              </div>
-              <button class="btn-pricing btn-pricing-premium" data-modal="open">Приобрести</button>
-            </div>
+            <h2 class="sv-card-name">«PREMIUM»</h2>
+            <p class="sv-card-desc">Для тех, кто хочет выжать из системы максимум — без подхода «накрутим всё, а дальше как повезёт». Стабильный frametime, нормальные 1% low, предсказуемый отклик мыши</p>
+            <ul class="sv-features">
+              <li>Содержимое Minimal и Standard пакетов</li>
+              <li>Максимально возможный разгон без ущерба для комплектующих</li>
+              <li>Разгон ОЗУ со всеми напряжениями (DRAM VDD/VDDQ, SOC, VDDIO, VDDP, VDDG, VDD MISC)</li>
+              <li>Углублённый подбор таймингов: первичные, вторичные, третичные, tRFC, tREFI и т.д.</li>
+              <li>Комплексная оптимизация для раскрытия потенциала ПК без потери стабильности</li>
+              <li>Поиск узких мест системы, консультации по модернизации</li>
+              <li>Полная настройка сети: DNS, DHCP, RSS, Nagle алгоритмы</li>
+              <li>Помощь с дополнительным ПО: OBS, Microsoft Office и другое</li>
+            </ul>
           </div>
+          <div class="sv-card-footer">
+            <div class="sv-price">8 000 <span class="sv-rub">₽</span></div>
+            <button class="sv-btn sv-btn--lime" data-modal="open">
+              <span>Приобрести</span>
+              <span class="sv-btn-circle sv-btn-circle--dark">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="sv-card-calli sv-card-calli--dark" aria-hidden="true"></div>
         </div>
 
       </div>
     </div>
   </section>
+
 </main>
 
 <!-- ─── FOOTER ─── -->
@@ -264,6 +206,10 @@
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">© 2026 Kaizen. Все права защищены.</p>
+      <div class="footer-legal">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Публичная оферта</a>
+      </div>
     </div>
   </div>
 </footer>

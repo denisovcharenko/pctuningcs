@@ -1206,3 +1206,278 @@ body.nav-open .nav-toggle span::after  { transform: translate(-50%, -50%) rotate
 @media (max-width: 599px) {
   .tm-lightbox-img { max-width: 95vw; }
 }
+
+/* ─── SERVICES PAGE ─── */
+.sv-main { padding-top: 80px; }
+
+/* Hero */
+.sv-hero {
+  padding: 72px 40px 52px;
+  border-bottom: 1px solid var(--border);
+}
+.sv-hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.sv-title {
+  font-size: clamp(52px, 8.5vw, 122px);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  color: var(--white);
+  margin: 0;
+}
+.sv-title-accent { color: var(--accent); }
+
+/* Ticker */
+.sv-ticker {
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  padding: 13px 0;
+  white-space: nowrap;
+}
+.sv-ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  animation: svTicker 28s linear infinite;
+  white-space: nowrap;
+  padding-right: 20px;
+}
+@keyframes svTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.sv-tick-sep {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.sv-tick-text {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* Cards section */
+.sv-cards-section { padding: 48px 0 100px; }
+.sv-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* Card base */
+.sv-card {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  min-height: 680px;
+}
+.sv-card-body {
+  padding: 28px 28px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.sv-card-footer {
+  padding: 16px 28px 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card variants */
+.sv-card--light { background: #f0f0eb; color: #111; }
+.sv-card--lime  { background: var(--accent); color: #111; }
+.sv-card--dark  { background: #101010; color: #fff; }
+
+/* Card header row */
+.sv-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sv-card-star {
+  font-size: 15px;
+  line-height: 1;
+  flex-shrink: 0;
+  color: #111;
+}
+.sv-card-star--lime { color: var(--accent); }
+
+/* Support badge */
+.sv-support {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.sv-support-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: rgba(0, 0, 0, 0.55);
+  padding: 5px 8px;
+}
+.sv-support-val {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  padding: 5px 9px;
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(0, 0, 0, 0.75);
+}
+.sv-support--dark { background: rgba(255, 255, 255, 0.08); }
+.sv-support--dark .sv-support-label { color: rgba(255, 255, 255, 0.45); }
+.sv-support--dark .sv-support-val {
+  background: rgba(197, 224, 0, 0.18);
+  color: var(--accent);
+}
+
+/* Card name */
+.sv-card-name {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0 0 14px;
+  color: inherit;
+}
+
+/* Card description */
+.sv-card-desc {
+  font-size: 12.5px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  color: inherit;
+  opacity: 0.6;
+}
+
+/* Features list */
+.sv-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.sv-features li {
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: 9px;
+  align-items: start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: inherit;
+}
+.sv-features li:first-child { border-top: 1px solid rgba(0, 0, 0, 0.1); }
+.sv-features li::before {
+  content: '■';
+  font-size: 7px;
+  padding-top: 3px;
+  opacity: 0.45;
+  color: inherit;
+}
+.sv-card--dark .sv-features li {
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.7);
+}
+.sv-card--dark .sv-features li:first-child { border-top-color: rgba(255, 255, 255, 0.07); }
+.sv-card--dark .sv-features li::before { color: rgba(255, 255, 255, 0.4); opacity: 1; }
+
+/* Price */
+.sv-price {
+  font-size: clamp(40px, 4.5vw, 60px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+  color: inherit;
+}
+.sv-card--dark .sv-price { color: #fff; }
+.sv-rub {
+  font-size: 0.42em;
+  font-weight: 600;
+  opacity: 0.4;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+/* Button */
+.sv-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px 10px 20px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  transition: opacity 0.2s, transform 0.2s var(--ease);
+}
+.sv-btn:hover { opacity: 0.87; transform: translateY(-1px); }
+.sv-btn:active { transform: scale(0.98); transition-duration: 0.08s; }
+.sv-btn--dark { background: #111; color: #fff; }
+.sv-btn--lime { background: var(--accent); color: #111; }
+
+.sv-btn-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sv-btn-circle--dark { background: rgba(0, 0, 0, 0.15); }
+
+/* Calligraphy watermark */
+.sv-card-calli {
+  position: absolute;
+  right: -16px;
+  bottom: 56px;
+  width: 68%;
+  height: 52%;
+  pointer-events: none;
+  background: url('../assets/kaizen-calli-dark.png') bottom right / contain no-repeat;
+  opacity: 0.055;
+  z-index: 0;
+}
+.sv-card-calli--lime  { opacity: 0.065; }
+.sv-card-calli--dark  {
+  background-image: url('../assets/kaizen-calli-green.png');
+  opacity: 0.07;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .sv-hero  { padding: 56px 20px 40px; }
+  .sv-title { letter-spacing: -2px; }
+  .sv-cards { grid-template-columns: 1fr; gap: 12px; }
+  .sv-card  { min-height: auto; }
+}
+@media (max-width: 599px) {
+  .sv-title { letter-spacing: -1.5px; }
+  .sv-hero  { padding: 48px 20px 32px; }
+  .sv-card-body   { padding: 22px 22px 0; }
+  .sv-card-footer { padding: 14px 22px 22px; }
+}
