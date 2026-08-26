@@ -6,6 +6,26 @@ if (header) {
   }, { passive: true });
 }
 
+/* ─── MOBILE NAV ─── */
+const navToggle = document.getElementById('nav-toggle');
+const headerNav = document.getElementById('header-nav');
+
+function closeNav() {
+  document.body.classList.remove('nav-open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+}
+
+if (navToggle && headerNav) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  headerNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+}
+
 /* ─── FAQ ACCORDION ─── */
 document.querySelectorAll('.faq-qitem').forEach(item => {
   item.querySelector('.faq-qitem-q')?.addEventListener('click', () => {
@@ -43,7 +63,10 @@ overlay?.addEventListener('click', e => {
 });
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') {
+    closeModal();
+    closeNav();
+  }
 });
 
 /* ─── FORM SUBMIT ─── */
