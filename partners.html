@@ -62,16 +62,7 @@
 
   <!-- Lightbox -->
   <div id="tm-lightbox" class="tm-lightbox" role="dialog" aria-modal="true" aria-label="Просмотр отзыва">
-    <button id="tm-lb-prev" class="tm-lb-nav tm-lb-prev" aria-label="Предыдущий">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
     <img id="tm-lb-img" class="tm-lightbox-img" src="" alt="" />
-    <button id="tm-lb-next" class="tm-lb-nav tm-lb-next" aria-label="Следующий">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <button id="tm-lb-close" class="tm-lb-close" aria-label="Закрыть">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </button>
   </div>
 </main>
 
@@ -302,14 +293,6 @@
       lbImg.style.opacity = '1';
     }, 150);
   }
-
-  document.getElementById('tm-lb-close').addEventListener('click', closeLightbox);
-  document.getElementById('tm-lb-prev').addEventListener('click', function () {
-    navigateTo((activeIdx - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  });
-  document.getElementById('tm-lb-next').addEventListener('click', function () {
-    navigateTo((activeIdx + 1) % TESTIMONIALS.length);
-  });
 
   lb.addEventListener('click', function (e) {
     if (e.target === lb) closeLightbox();

@@ -1203,46 +1203,6 @@ body.nav-open .nav-toggle span::after  { transform: translate(-50%, -50%) rotate
   transition: opacity 0.15s;
 }
 
-.tm-lb-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 2px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  transition: background 0.2s, color 0.2s;
-}
-.tm-lb-close:hover { background: rgba(255, 255, 255, 0.14); color: var(--white); }
-
-.tm-lb-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 2px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  transition: background 0.2s, color 0.2s;
-}
-.tm-lb-nav:hover { background: rgba(255, 255, 255, 0.14); color: var(--white); }
-.tm-lb-prev { left: 20px; }
-.tm-lb-next { right: 20px; }
-
 @media (max-width: 599px) {
-  .tm-lb-prev { left: 8px; }
-  .tm-lb-next { right: 8px; }
-  .tm-lb-close { top: 12px; right: 12px; }
+  .tm-lightbox-img { max-width: 95vw; }
 }
