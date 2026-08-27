@@ -12,9 +12,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:           #191919;
-  --bg-card:      #1e1e1e;
-  --bg-surface:   #242424;
+  --bg:           #000000;
+  --bg-card:      #111111;
+  --bg-surface:   #1a1a1a;
   --accent:       #c5e000;
   --accent-dim:   rgba(197,224,0,0.12);
   --accent-border:rgba(197,224,0,0.28);
@@ -223,24 +223,30 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .hero-title .accent { color: var(--accent); }
 .hero-btn {
   display: inline-flex; align-items: center;
-  height: 60px;
-  background: #fff; color: #111;
-  border-radius: 9999px;
-  padding: 6px 6px 6px 28px;
+  height: 56px;
+  border-radius: var(--radius);
+  overflow: hidden;
   gap: 0;
   transition: opacity 0.2s, transform 0.25s var(--ease);
-  border: none;
+  border: none; text-decoration: none;
 }
-.hero-btn:hover { opacity: 0.92; transform: translateY(-2px); }
+.hero-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 .hero-btn:active { transform: translateY(0) scale(0.98); transition-duration: 0.1s; }
 .hero-btn-text {
-  font-size: 13px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.3px;
-  color: #111; padding-right: 24px; white-space: nowrap;
+  display: flex; align-items: center;
+  height: 100%;
+  padding: 0 28px;
+  font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1.8px;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.08);
+  white-space: nowrap;
 }
 .hero-btn-icon {
-  width: 48px; height: 48px;
-  flex-shrink: 0; display: block;
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 .hero-bottom-img { display: none; }
 
@@ -1037,9 +1043,9 @@ body.nav-open .nav-toggle span::after  { transform: translate(-50%, -50%) rotate
     font-size: clamp(40px, 12vw, 64px);
     margin-bottom: 24px;
   }
-  .hero-btn { height: 54px; padding: 5px 5px 5px 22px; }
-  .hero-btn-text { padding-right: 18px; }
-  .hero-btn-icon { width: 42px; height: 42px; }
+  .hero-btn { height: 50px; }
+  .hero-btn-text { padding: 0 20px; font-size: 10px; letter-spacing: 1.4px; }
+  .hero-btn-icon { width: 50px; height: 50px; }
 
   /* features */
   .features-grid { grid-template-columns: 1fr; }
@@ -1483,29 +1489,30 @@ body.nav-open .nav-toggle span::after  { transform: translate(-50%, -50%) rotate
   width: 100%;
   padding: 10px 10px 10px 20px;
   border: none;
-  border-radius: 100px;
+  border-radius: var(--radius);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1px;
   transition: opacity 0.2s, transform 0.2s var(--ease);
+  overflow: hidden;
 }
 .sv-btn:hover { opacity: 0.87; transform: translateY(-1px); }
 .sv-btn:active { transform: scale(0.98); transition-duration: 0.08s; }
-.sv-btn--dark { background: #111; color: #fff; }
+.sv-btn--dark { background: #1a1a1a; color: #fff; }
 .sv-btn--lime { background: var(--accent); color: #111; }
 
 .sv-btn-circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.sv-btn-circle--dark { background: rgba(0, 0, 0, 0.15); }
+.sv-btn-circle--dark { background: rgba(0, 0, 0, 0.2); }
 
 /* Calligraphy watermark */
 .sv-card-calli {
