@@ -248,9 +248,9 @@
       </div>
       <div class="form-footer">
         <p class="form-disclaimer">
-          Нажимая «оставить заявку», вы соглашаетесь с <a href="#">политикой конфиденциальности</a> и <a href="#">публичной офертой</a>.
+          Нажимая «Приобрести», вы соглашаетесь с <a href="#">политикой конфиденциальности</a> и <a href="#">публичной офертой</a>.
         </p>
-        <button type="submit" class="btn-outline-accent">Оставить заявку</button>
+        <button type="submit" class="btn-outline-accent">Приобрести</button>
       </div>
     </form>
   </div>
@@ -259,91 +259,5 @@
 <script src="js/main.js"></script>
 <script>!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.12/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
 
-<!-- DEV: position sliders — remove before final deploy -->
-<div id="gun-devtool" style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:monospace;font-size:12px;user-select:none;">
-
-  <!-- collapsed toggle button -->
-  <button id="dev-toggle" onclick="devToggle()" style="
-    display:block; background:#191919; border:1px solid #c5e000; border-radius:4px;
-    color:#c5e000; font-family:monospace; font-size:10px; font-weight:700;
-    letter-spacing:1px; padding:6px 12px; cursor:pointer; text-transform:uppercase;
-    box-shadow:0 2px 12px rgba(0,0,0,0.5);
-  ">⚙ Dev</button>
-
-  <!-- expanded panel -->
-  <div id="dev-panel" style="
-    display:none; margin-top:6px;
-    background:#191919; border:1px solid #c5e000; border-radius:6px;
-    padding:14px 16px; color:#fff; min-width:250px;
-    box-shadow:0 4px 24px rgba(0,0,0,0.6);
-  ">
-    <div style="color:#c5e000;font-weight:700;margin-bottom:12px;letter-spacing:1px;font-size:10px;text-transform:uppercase;">Dev Controls</div>
-
-    <div style="color:#555;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:4px;">Гармата — top</div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-      <input type="range" id="gun-top-slider" min="-50" max="80" value="23" step="1"
-        style="flex:1;accent-color:#c5e000;cursor:pointer;" />
-      <span id="gun-top-val" style="color:#c5e000;min-width:44px;text-align:right;font-weight:700;">23%</span>
-    </div>
-
-    <div style="color:#555;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:4px;">Логотип — відступ зверху</div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-      <input type="range" id="logo-top-slider" min="-200" max="400" value="0" step="2"
-        style="flex:1;accent-color:#c5e000;cursor:pointer;" />
-      <span id="logo-top-val" style="color:#c5e000;min-width:44px;text-align:right;font-weight:700;">0px</span>
-    </div>
-
-    <div style="color:#555;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:4px;">Гармата — розмір</div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
-      <input type="range" id="gun-size-slider" min="50" max="200" value="110" step="2"
-        style="flex:1;accent-color:#c5e000;cursor:pointer;" />
-      <span id="gun-size-val" style="color:#c5e000;min-width:44px;text-align:right;font-weight:700;">110%</span>
-    </div>
-
-    <button id="dev-copy-btn" onclick="devCopy()" style="
-      width:100%;background:#c5e000;border:none;border-radius:3px;
-      color:#191919;font-family:monospace;font-size:10px;font-weight:700;
-      letter-spacing:0.8px;text-transform:uppercase;padding:7px 0;cursor:pointer;
-    ">Копіювати налаштування</button>
-  </div>
-</div>
-
-<script>
-(function(){
-  function devToggle(){
-    const p = document.getElementById('dev-panel');
-    p.style.display = p.style.display === 'none' ? 'block' : 'none';
-  }
-  window.devToggle = devToggle;
-
-  function devCopy(){
-    const gun  = document.getElementById('gun-top-slider').value;
-    const logo = document.getElementById('logo-top-slider').value;
-    const size = document.getElementById('gun-size-slider').value;
-    const text = `gun top: ${gun}%\nlogo padding-top: ${logo}px\ngun width: ${size}%`;
-    navigator.clipboard.writeText(text).then(function(){
-      const btn = document.getElementById('dev-copy-btn');
-      btn.textContent = 'Скопійовано ✓';
-      setTimeout(function(){ btn.textContent = 'Копіювати налаштування'; }, 1800);
-    });
-  }
-  window.devCopy = devCopy;
-
-  document.getElementById('gun-top-slider').addEventListener('input', function(){
-    document.querySelector('.hero-gun').style.top = this.value + '%';
-    document.getElementById('gun-top-val').textContent = this.value + '%';
-  });
-
-  document.getElementById('logo-top-slider').addEventListener('input', function(){
-    document.querySelector('.hero-content').style.paddingTop = this.value + 'px';
-    document.getElementById('logo-top-val').textContent = this.value + 'px';
-  });
-
-  document.getElementById('gun-size-slider').addEventListener('input', function(){
-    document.querySelector('.hero-gun').style.width = this.value + '%';
-    document.getElementById('gun-size-val').textContent = this.value + '%';
-  });
-})();
-</script>
 </body>
 </html>
