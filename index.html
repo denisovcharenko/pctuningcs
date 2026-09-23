@@ -9,6 +9,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .faq-big-title {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 12vw, 160px);
+      font-weight: normal;
+      text-transform: uppercase;
+      line-height: 0.85;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 40px;
+    }
+    .faq-cta {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .faq-cta-text h4 {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: normal; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .faq-cta-text p { font-size: 13px; color: var(--text-muted); }
+    .faq-cta-btn {
+      display: inline-flex; align-items: center; justify-content: space-between;
+      padding: 0 14px 0 20px; height: 52px; width: 100%;
+      background: var(--accent); border-radius: var(--radius);
+      font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: #111;
+    }
+    .faq-cta-btn svg { flex-shrink: 0; }
+    @media (max-width: 900px) {
+      .faq-big-title { font-size: clamp(56px, 15vw, 120px); }
+    }
+    @media (max-width: 768px) {
+      .faq-big-title { font-size: clamp(44px, 18vw, 80px); margin-bottom: 28px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -21,7 +62,7 @@
     <nav class="header-nav" id="header-nav" aria-label="Главное меню">
       <a href="index.html" class="active">Главная</a>
       <a href="services.html">Услуги</a>
-      <a href="partners.html">Отзывы</a>
+      <a href="partners.html">С кем работаем</a>
     </nav>
     <div class="header-socials">
       <a href="https://t.me/" aria-label="Telegram" target="_blank" rel="noopener">
@@ -43,7 +84,7 @@
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div id="us-hero-scene" class="hero-unicorn-scene" data-us-project="XK4ZWmjKYyWpMlexMQj7"></div>
+  <div id="us-hero-scene" class="hero-unicorn-scene" data-us-project="R4yZyz6ZXeCM3UrezL4g"></div>
   <img src="assets/hero-gun.png" alt="" class="hero-gun" aria-hidden="true" style="display:none;" />
 
   <div class="hero-content">
@@ -55,6 +96,9 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
     </a>
+    <div class="hero-scroll-cue" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
   </div>
 </section>
 
@@ -64,22 +108,22 @@
     <div class="feature-item">
       <div class="feature-index">01</div>
       <div class="feature-body">
-        <div class="feature-heading">Команда инженеров</div>
-        <p class="feature-text">Энтузиасты и разработчики в сфере оптимизации — не гайды с YouTube, а реальная работа с вашим железом.</p>
+        <div class="feature-heading">Индивидуальная диагностика</div>
+        <p class="feature-text">Сначала ищем, где именно теряется производительность: Windows, BIOS, память, драйверы, сеть или охлаждение. Никаких одинаковых пресетов для разных ПК.</p>
       </div>
     </div>
     <div class="feature-item">
       <div class="feature-index">02</div>
       <div class="feature-body">
-        <div class="feature-heading">Честные цены</div>
-        <p class="feature-text">Три тарифа от 3 000 ₽. Каждый рублей идёт в работу, а не в маркетинг.</p>
+        <div class="feature-heading">Результат в цифрах</div>
+        <p class="feature-text">Сравниваем систему до и после: AVG FPS, 1% Low, frametime и температуры. Ты видишь не обещания, а то, что реально изменилось на твоём ПК.</p>
       </div>
     </div>
     <div class="feature-item">
       <div class="feature-index">03</div>
       <div class="feature-body">
-        <div class="feature-heading">Только тесты</div>
-        <p class="feature-text">Prime95, TestMem5, OCCT — каждая настройка верифицируется под стресс-нагрузкой до финального применения.</p>
+        <div class="feature-heading">Под твою задачу</div>
+        <p class="feature-text">FACEIT, Premier, стрим или просто стабильная игра — набор работ подбираем под сценарий, конфигурацию и то, что именно мешает сейчас.</p>
       </div>
     </div>
   </div>
@@ -90,73 +134,75 @@
   <div class="faq-container">
     <div class="faq-cols">
 
-      <!-- Left: sticky title -->
+      <!-- Left: large FAQ label + CTA -->
       <div class="faq-col-left">
-        <div class="section-label">
-          <span class="section-label-dot"></span>
-          FAQ / Kaizen
-        </div>
-        <h2 class="faq-title">Частые вопросы<br /><span class="accent">перед настройкой</span></h2>
-      </div>
-
-      <!-- Right: Q&A list -->
-      <div class="faq-col-right">
-        <div class="faq-qitem open">
-          <div class="faq-qitem-num">01</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Вы настраиваете ПК под конкретные игры?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Не совсем. Для CS2, Valorant, Apex Legends настройка отличается деталями, но основа оптимизации одинаковая — система работает стабильно везде.</div></div></div>
-          </div>
-        </div>
-        <div class="faq-qitem">
-          <div class="faq-qitem-num">02</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Нужно ли переустанавливать Windows?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">В Minimal — да, устанавливаем кастомный Playbook для Win 11 24H2. В Standard и Premium переустановка по умолчанию — чистая база для глубокой оптимизации.</div></div></div>
-          </div>
-        </div>
-        <div class="faq-qitem">
-          <div class="faq-qitem-num">03</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Безопасен ли разгон?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">При правильном подходе — да. Проводим стресс-тесты (Prime95, TestMem5, OCCT), проверяем стабильность и только после фиксируем настройки.</div></div></div>
-          </div>
-        </div>
-        <div class="faq-qitem">
-          <div class="faq-qitem-num">04</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Что даёт настройка оперативной памяти?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Снижение latency, рост пропускной способности, стабильный фреймтайм. В играх — более плавный геймплей и рост 1% low FPS.</div></div></div>
-          </div>
-        </div>
-        <div class="faq-qitem">
-          <div class="faq-qitem-num">05</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Почему нельзя настроить по гайду на YouTube?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Гайды — для среднего пользователя. Мы работаем с вашей конкретной системой: процессором, памятью, материнской платой и видеокартой.</div></div></div>
-          </div>
-        </div>
-        <div class="faq-qitem">
-          <div class="faq-qitem-num">06</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Вы используете AI для оптимизации?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Нет. Всё вручную нашими инженерами. AI не учитывает реальные данные стресс-тестов, поведение конкретного чипа и индивидуальные отклонения железа.</div></div></div>
-          </div>
-        </div>
-        <div class="faq-qitem">
-          <div class="faq-qitem-num">07</div>
-          <div class="faq-qitem-body">
-            <div class="faq-qitem-q"><span class="faq-qitem-q-text">Сколько времени занимает настройка?</span><span class="faq-icon" aria-hidden="true"></span></div>
-            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Minimal — 3–5 часов. Standard — 5–8 часов с тестированием. Premium — 8–14 часов: полный цикл разгона и верификации стабильности.</div></div></div>
-          </div>
-        </div>
-
+        <h2 class="faq-big-title">FAQ</h2>
         <div class="faq-cta">
           <div class="faq-cta-text">
             <h4>Не знаешь какой пакет выбрать?</h4>
             <p>Подберём настройку под твою систему, игры и железо.</p>
           </div>
-          <a href="https://t.me/" class="btn-accent" target="_blank" rel="noopener">Написать в телеграмм</a>
+          <a href="services.html" class="btn-accent faq-cta-btn" style="margin-bottom:8px;">
+            <span>Выбрать пакет</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://t.me/" class="btn-accent faq-cta-btn" target="_blank" rel="noopener">
+            <span>Telegram</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Q&A accordion -->
+      <div class="faq-col-right">
+        <div class="faq-qitem open">
+          <div class="faq-qitem-num">01</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">С чего начинается настройка?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">С диагностики. Смотрим конфигурацию, состояние системы и текущие показатели, чтобы понять, где именно теряется производительность.</div></div></div>
+          </div>
+        </div>
+        <div class="faq-qitem">
+          <div class="faq-qitem-num">02</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">Как понять, что настройка реально помогла?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Сравниваем показатели до и после: AVG FPS, 1% Low, frametime, температуры и стабильность под нагрузкой. Один красивый пиковый FPS нас не интересует.</div></div></div>
+          </div>
+        </div>
+        <div class="faq-qitem">
+          <div class="faq-qitem-num">03</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">Обязательно ли разгонять комплектующие?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Нет. Разгон используем только там, где он имеет смысл. Иногда больший эффект дают память, BIOS, драйверы или сама Windows.</div></div></div>
+          </div>
+        </div>
+        <div class="faq-qitem">
+          <div class="faq-qitem-num">04</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">Что даст настройка, если у меня уже мощный ПК?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">На мощных системах задача часто не в том, чтобы получить ещё +100 FPS, а в том, чтобы сделать frametime и просадки стабильнее и раскрыть то железо, которое уже стоит в ПК.</div></div></div>
+          </div>
+        </div>
+        <div class="faq-qitem">
+          <div class="faq-qitem-num">05</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">Подойдёт ли настройка для FACEIT и Premier?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Да. Мы не обещаем больше ELO, но можем убрать технические проблемы, которые мешают игре: микрофризы, нестабильный frametime, лишнюю нагрузку на систему и некорректные настройки.</div></div></div>
+          </div>
+        </div>
+        <div class="faq-qitem">
+          <div class="faq-qitem-num">06</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">Можно ли настроить ПК одновременно для игры и стрима?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Да. В подходящем тарифе учитываем OBS и дополнительный софт, чтобы оценивать систему именно под нагрузкой, в которой ты реально её используешь.</div></div></div>
+          </div>
+        </div>
+        <div class="faq-qitem">
+          <div class="faq-qitem-num">07</div>
+          <div class="faq-qitem-body">
+            <div class="faq-qitem-q" role="button" tabindex="0" aria-expanded="false"><span class="faq-qitem-q-text">Что будет после завершения настройки?</span><span class="faq-icon" aria-hidden="true"></span></div>
+            <div class="faq-qitem-a-wrap"><div class="faq-qitem-a-inner"><div class="faq-qitem-a">Проверяем стабильность системы, фиксируем результат и остаёмся на связи в рамках поддержки выбранного тарифа.</div></div></div>
+          </div>
         </div>
       </div>
 
@@ -177,7 +223,7 @@
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="index.html">Главная</a>
         <a href="services.html">Услуги</a>
-        <a href="partners.html">Отзывы</a>
+        <a href="partners.html">С кем работаем</a>
       </nav>
       <div class="footer-socials">
         <a href="https://t.me/" aria-label="Telegram" target="_blank" rel="noopener">
@@ -199,6 +245,9 @@
       </div>
     </div>
   </div>
+  <div class="footer-gun-wrap">
+    <img src="assets/hero-gun.png" alt="" class="footer-gun" aria-hidden="true" />
+  </div>
 </footer>
 
 <!-- ─── MODAL ─── -->
@@ -208,39 +257,21 @@
     <h2>Заявка на настройку</h2>
     <p class="modal-subtitle">Укажи игру, промокод и пожелания — подберём подходящий пакет настройки под твою систему.</p>
     <form id="order-form">
-      <div class="form-grid">
-        <div class="form-field">
-          <label class="form-label" for="name">Имя</label>
-          <input class="form-input" type="text" id="name" name="name" placeholder="Михаил" required />
-        </div>
-        <div class="form-field">
-          <label class="form-label" for="phone">Телефон</label>
-          <input class="form-input" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" />
-        </div>
+      <div class="form-field" style="margin-bottom:12px;">
+        <label class="form-label" for="name">Имя</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Михаил" required />
+      </div>
+      <div class="form-grid" style="margin-bottom:12px;">
         <div class="form-field">
           <label class="form-label" for="telegram">Telegram</label>
-          <input class="form-input" type="text" id="telegram" name="telegram" placeholder="username" required />
+          <input class="form-input" type="text" id="telegram" name="telegram" placeholder="username" />
         </div>
         <div class="form-field">
-          <label class="form-label" for="extra">Доп. связь</label>
-          <input class="form-input" type="text" id="extra" name="extra" placeholder="WhatsApp, E-mail или др." />
+          <label class="form-label" for="discord">Discord</label>
+          <input class="form-input" type="text" id="discord" name="discord" placeholder="username" />
         </div>
       </div>
-      <div class="form-field" style="margin-bottom:14px;">
-        <label class="form-label" for="game">В какую игру вы играете?</label>
-        <div class="form-select-wrap">
-          <select class="form-select" id="game" name="game">
-            <option value="" disabled selected>Выберите игру</option>
-            <option>CS2</option>
-            <option>Valorant</option>
-            <option>Apex Legends</option>
-            <option>Dota 2</option>
-            <option>Fortnite</option>
-            <option>Другая</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-field" style="margin-bottom:14px;">
+      <div class="form-field" style="margin-bottom:12px;">
         <label class="form-label" for="promo">Промокод</label>
         <input class="form-input" type="text" id="promo" name="promo" placeholder="Например: Kaizenpromocode10" />
       </div>
@@ -252,14 +283,14 @@
         <p class="form-disclaimer">
           Нажимая «Приобрести», вы соглашаетесь с <a href="#">политикой конфиденциальности</a> и <a href="#">публичной офертой</a>.
         </p>
-        <button type="submit" class="btn-outline-accent">Приобрести</button>
+        <button type="submit" class="btn-accent" style="height:44px;padding:0 24px;white-space:nowrap;">Приобрести</button>
       </div>
     </form>
   </div>
 </div>
 
 <script src="js/main.js"></script>
-<script>!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.12/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
+<script>!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.14/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
 
 </body>
 </html>

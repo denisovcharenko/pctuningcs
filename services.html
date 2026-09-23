@@ -4,11 +4,240 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Услуги — Kaizen | Тонкая настройка системы</title>
-  <meta name="description" content="Пакеты настройки ПК: Minimal от 3 000 ₽, Standard от 5 500 ₽, Premium от 8 000 ₽. Настройка Windows, BIOS, разгон памяти и процессора." />
+  <meta name="description" content="Пакеты настройки ПК: Базовый от 3 000 ₽, Премиум от 5 000 ₽, Премиум+ от 8 000 ₽. Настройка Windows, BIOS, разгон памяти и процессора." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css" />
+  <style>
+    /* ── Pricing Table ── */
+    .pt-section { padding: 48px 0 100px; }
+    .pt-wrap {
+      max-width: 1340px; margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 288px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Selector cards */
+    .pt-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1px;
+    }
+    .pt-pkg {
+      padding: 20px 20px 18px;
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-right: 1px solid var(--border);
+    }
+    .pt-pkg:last-child { border-right: none; }
+    .pt-pkg:hover:not(.active) { background: #1a1a1a; }
+    .pt-pkg.active { background: var(--accent); color: #111; }
+
+    .pt-pkg-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); display: block; margin-bottom: 8px;
+    }
+    .pt-pkg.active .pt-pkg-label { color: rgba(0,0,0,0.5); }
+    .pt-pkg-name { font-size: 22px; font-weight: 800; line-height: 1; margin-bottom: 3px; color: inherit; }
+    .pt-pkg-sub { font-size: 11px; margin-bottom: 14px; color: inherit; opacity: 0.55; }
+    .pt-pkg-price { font-size: 20px; font-weight: 800; color: inherit; line-height: 1; }
+    .pt-pkg-price span { font-size: 13px; opacity: 0.5; margin-left: 2px; }
+    .pt-pkg-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 10px;
+    }
+    .pt-pkg-count { font-size: 10px; color: inherit; opacity: 0.45; }
+    .pt-pkg-check {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; background: transparent;
+    }
+    .pt-pkg.active .pt-pkg-check {
+      background: #111; border-color: #111;
+    }
+    .pt-pkg.active .pt-pkg-check::after {
+      content: '';
+      width: 7px; height: 4px;
+      border-left: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      transform: rotate(-45deg) translate(0px, -1px);
+      display: block;
+    }
+
+    /* Comparison table */
+    .pt-table {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    .pt-table th {
+      font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      text-align: left;
+    }
+    .pt-table th:last-child { border-right: none; }
+    .pt-th-service { width: 44%; }
+    .pt-th-pkg { width: 18.6%; text-align: center; }
+    .pt-th-pkg.active { background: var(--accent); color: #111; }
+
+    .pt-cat-row td {
+      padding: 10px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    .pt-cat-row td:last-child { border-right: none; }
+    .pt-cat-inner {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .pt-cat-num { color: var(--accent); }
+
+    .pt-data-row td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      font-size: 12.5px; color: rgba(255,255,255,0.75);
+      vertical-align: middle;
+      text-align: left;
+    }
+    .pt-data-row td:last-child { border-right: none; }
+    .pt-data-row td.pt-cell-center { text-align: center; }
+    .pt-data-row:hover td { background: rgba(255,255,255,0.02); }
+    .pt-data-row:last-child td { border-bottom: none; }
+
+    .pt-cell-check { color: var(--accent); font-size: 15px; line-height: 1; }
+    .pt-cell-plus { color: rgba(255,255,255,0.38); font-size: 15px; line-height: 1; }
+    .pt-cell-dash { color: rgba(255,255,255,0.30); font-size: 18px; line-height: 1; }
+
+    .pt-col-active { background: rgba(197,224,0,0.04); }
+
+    /* Detail panel */
+    .pt-detail {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      position: sticky;
+      top: 100px;
+    }
+    .pt-detail-tag-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .pt-detail-arrow { font-size: 20px; color: rgba(255,255,255,0.2); line-height: 1; }
+    .pt-detail-tag {
+      font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); background: var(--bg-surface); border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: var(--radius);
+    }
+    .pt-detail-name {
+      font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px;
+      margin-bottom: 10px; line-height: 1; color: var(--white);
+    }
+    .pt-detail-desc {
+      font-size: 12px; color: var(--text-muted); line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .pt-detail-count-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .pt-detail-count-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+    .pt-detail-count-val { font-size: 11px; font-weight: 700; color: var(--accent); }
+    .pt-detail-bar { display: flex; gap: 3px; margin-bottom: 20px; }
+    .pt-bar-seg {
+      height: 4px; flex: 1;
+      background: rgba(255,255,255,0.1);
+      transition: background 0.3s;
+    }
+    .pt-bar-seg.filled { background: var(--accent); }
+
+    .pt-detail-features {
+      list-style: none; padding: 0; margin: 0 0 16px;
+      border-top: 1px solid var(--border);
+    }
+    .pt-detail-features li {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 9px 0; border-bottom: 1px solid var(--border);
+      font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.45;
+    }
+    .pt-detail-features li::before {
+      content: '■'; font-size: 6px; color: var(--accent);
+      padding-top: 4px; flex-shrink: 0;
+    }
+
+    .pt-detail-support {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 12px; border: 1px solid var(--accent-border);
+      border-radius: var(--radius); margin-bottom: 16px;
+      background: var(--accent-dim);
+    }
+    .pt-detail-support-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .pt-detail-support-val {
+      font-size: 11px; font-weight: 800; color: var(--accent); letter-spacing: 0.5px;
+    }
+
+    .pt-detail-price {
+      font-size: 36px; font-weight: 900; line-height: 1;
+      margin-bottom: 16px; color: var(--white);
+    }
+    .pt-detail-price span { font-size: 16px; opacity: 0.4; margin-left: 4px; }
+
+    .pt-detail-btn {
+      width: 100%; height: 46px; border-radius: var(--radius);
+      background: var(--accent); color: #111;
+      border: none; cursor: pointer;
+      font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 10px 0 20px;
+      transition: opacity 0.2s, transform 0.2s var(--ease);
+    }
+    .pt-detail-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .pt-detail-btn:active { transform: scale(0.98); transition-duration: 0.1s; }
+    .pt-detail-btn-icon {
+      width: 32px; height: 32px; border-radius: var(--radius);
+      background: rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Mobile */
+    @media (max-width: 1100px) {
+      .pt-wrap { grid-template-columns: 1fr; padding: 0 24px; }
+      .pt-detail { position: static; }
+    }
+    @media (max-width: 768px) {
+      .pt-wrap { padding: 0 20px; }
+      .pt-section { padding: 32px 0 80px; }
+      .pt-selector { grid-template-columns: 1fr; }
+      .pt-pkg { border-right: none; border-bottom: 1px solid var(--border); }
+      .pt-pkg:last-child { border-bottom: none; }
+      .pt-table { overflow-x: auto; display: block; }
+      .pt-table th, .pt-data-row td { padding: 10px 10px; font-size: 11px; }
+      .pt-th-service { width: auto; }
+    }
+  </style>
 </head>
 <body>
 
@@ -21,7 +250,7 @@
     <nav class="header-nav" id="header-nav" aria-label="Главное меню">
       <a href="index.html">Главная</a>
       <a href="services.html" class="active">Услуги</a>
-      <a href="partners.html">Отзывы</a>
+      <a href="partners.html">С кем работаем</a>
     </nav>
     <div class="header-socials">
       <a href="https://t.me/" aria-label="Telegram" target="_blank" rel="noopener">
@@ -66,116 +295,219 @@
     </div>
   </div>
 
-  <!-- Pricing cards -->
-  <section class="sv-cards-section">
-    <div class="container">
-      <div class="sv-cards">
+  <!-- Pricing Table -->
+  <section class="pt-section">
+    <div class="pt-wrap">
 
-        <!-- ── MINIMAL ── -->
-        <div class="sv-card sv-card--light">
-          <div class="sv-card-body">
-            <div class="sv-card-header">
-              <span class="sv-card-star">★</span>
+      <!-- Left: selector + table -->
+      <div class="pt-main">
+
+        <!-- Package selector -->
+        <div class="pt-selector" id="pt-selector">
+          <div class="pt-pkg active" data-pkg="0">
+            <span class="pt-pkg-label">Пакет / 01</span>
+            <div class="pt-pkg-name">Базовый</div>
+            <div class="pt-pkg-sub">Windows и CS2</div>
+            <div class="pt-pkg-price">3 000 <span>₽</span></div>
+            <div class="pt-pkg-footer">
+              <span class="pt-pkg-count">4 из 16 услуг</span>
+              <span class="pt-pkg-check"></span>
             </div>
-            <h2 class="sv-card-name">«MINIMAL»</h2>
-            <p class="sv-card-desc">Стартовый пакет — убираем лишнюю нагрузку с системы, делаем Windows чище и отзывчивее без агрессивных вмешательств</p>
-            <ul class="sv-features">
-              <li>Полная оптимизация Windows: кастомный Playbook для</li>
-              <li>Debloat драйвера NVIDIA / AMD с P0 State Lock. Отключение HDCP / Cuda P2 / MPO</li>
-              <li>Настройка Presentation Mode (FSO / FSE)</li>
-              <li>MSI Mode, Interrupt Affinity, Cpu Setter, Nvidia Reflex / LLM</li>
-              <li>Настройка сети: QoS планировщик пакетов, ExitLag</li>
-              <li>Кастомная схема электропитания, отключение Power Saving функций</li>
-              <li>Настройка Core Parking алгоритмов</li>
-              <li>Советы по монитору: OverDrive, G-Sync, DPI, Polling Rate, Motion Sync</li>
-            </ul>
           </div>
-          <div class="sv-card-footer">
-            <div class="sv-price">3 000 <span class="sv-rub">₽</span></div>
-            <button class="sv-btn sv-btn--dark" data-modal="open">
-              <span>Приобрести</span>
-              <span class="sv-btn-circle">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
+          <div class="pt-pkg" data-pkg="1">
+            <span class="pt-pkg-label">Пакет / 02</span>
+            <div class="pt-pkg-name">Премиум</div>
+            <div class="pt-pkg-sub">Система, BIOS и разгон</div>
+            <div class="pt-pkg-price">5 000 <span>₽</span></div>
+            <div class="pt-pkg-footer">
+              <span class="pt-pkg-count">8 из 16 услуг</span>
+              <span class="pt-pkg-check"></span>
+            </div>
           </div>
-          <div class="sv-card-calli" aria-hidden="true"></div>
+          <div class="pt-pkg" data-pkg="2">
+            <span class="pt-pkg-label">Пакет / 03</span>
+            <div class="pt-pkg-name">Премиум+</div>
+            <div class="pt-pkg-sub">Глубокая настройка и OBS</div>
+            <div class="pt-pkg-price">8 000 <span>₽</span></div>
+            <div class="pt-pkg-footer">
+              <span class="pt-pkg-count">16 из 16 услуг</span>
+              <span class="pt-pkg-check"></span>
+            </div>
+          </div>
         </div>
 
-        <!-- ── STANDARD ── -->
-        <div class="sv-card sv-card--lime">
-          <div class="sv-card-body">
-            <div class="sv-card-header">
-              <span class="sv-card-star">★</span>
-              <div class="sv-support">
-                <span class="sv-support-label">Поддержка после настройки</span>
-                <span class="sv-support-val">1 месяц</span>
-              </div>
-            </div>
-            <h2 class="sv-card-name">«STANDARD»</h2>
-            <p class="sv-card-desc">Раскрываем потенциал железа через настройку системы, BIOS и базовый overclock/undervolt под реальную нагрузку</p>
-            <ul class="sv-features">
-              <li>Всё содержимое пакета Minimal</li>
-              <li>Базовый разгон ядра видеокарты и видеопамяти. Фикс</li>
-              <li>Тестирование видеокарты в разных нагрузках</li>
-              <li>Базовый разгон ОЗУ: первичные, вторичные, третичные</li>
-              <li>Фиксированная частота / PBO и напряжение на процесс</li>
-              <li>LLC, C-State, Curve Optimizer, Power Limits</li>
-              <li>Стресс-тест: Prime95, TestMem5, OCCT, Karhu и др.</li>
-            </ul>
-          </div>
-          <div class="sv-card-footer">
-            <div class="sv-price">5 500 <span class="sv-rub">₽</span></div>
-            <button class="sv-btn sv-btn--dark" data-modal="open">
-              <span>Приобрести</span>
-              <span class="sv-btn-circle">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
-          </div>
-          <div class="sv-card-calli sv-card-calli--lime" aria-hidden="true"></div>
-        </div>
+        <!-- Comparison table -->
+        <div class="pt-table-wrap" style="overflow-x:auto;">
+          <table class="pt-table">
+            <thead>
+              <tr>
+                <th class="pt-th-service">Услуга</th>
+                <th class="pt-th-pkg" id="th-0">Базовый</th>
+                <th class="pt-th-pkg" id="th-1">Премиум</th>
+                <th class="pt-th-pkg" id="th-2">Премиум+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 01 Windows и CS2 -->
+              <tr class="pt-cat-row">
+                <td colspan="4"><span class="pt-cat-inner"><span class="pt-cat-num">01</span> Windows и CS2</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Переустановка Windows 11 25H2</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Установка и обновление драйверов</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Базовая настройка Windows под CS2</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Настройка CS2</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
 
-        <!-- ── PREMIUM ── -->
-        <div class="sv-card sv-card--dark">
-          <div class="sv-card-body">
-            <div class="sv-card-header">
-              <span class="sv-card-star sv-card-star--lime">★</span>
-              <div class="sv-support sv-support--dark">
-                <span class="sv-support-label">Поддержка после настройки</span>
-                <span class="sv-support-val">3 месяца</span>
-              </div>
-            </div>
-            <h2 class="sv-card-name">«PREMIUM»</h2>
-            <p class="sv-card-desc">Для тех, кто хочет выжать из системы максимум — без подхода «накрутим всё, а дальше как повезёт». Стабильный frametime, нормальные 1% low, предсказуемый отклик мыши</p>
-            <ul class="sv-features">
-              <li>Содержимое Minimal и Standard пакетов</li>
-              <li>Максимально возможный разгон без ущерба для комплектующих</li>
-              <li>Разгон ОЗУ со всеми напряжениями (DRAM VDD/VDDQ, SOC, VDDIO, VDDP, VDDG, VDD MISC)</li>
-              <li>Углублённый подбор таймингов: первичные, вторичные, третичные, tRFC, tREFI и т.д.</li>
-              <li>Комплексная оптимизация для раскрытия потенциала ПК без потери стабильности</li>
-              <li>Поиск узких мест системы, консультации по модернизации</li>
-              <li>Полная настройка сети: DNS, DHCP, RSS, Nagle алгоритмы</li>
-              <li>Помощь с дополнительным ПО: OBS, Microsoft Office и другое</li>
-            </ul>
-          </div>
-          <div class="sv-card-footer">
-            <div class="sv-price">8 000 <span class="sv-rub">₽</span></div>
-            <button class="sv-btn sv-btn--lime" data-modal="open">
-              <span>Приобрести</span>
-              <span class="sv-btn-circle sv-btn-circle--dark">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
-          </div>
-          <div class="sv-card-calli sv-card-calli--dark" aria-hidden="true"></div>
-        </div>
+              <!-- 02 BIOS, Разгон и стабильность -->
+              <tr class="pt-cat-row">
+                <td colspan="4"><span class="pt-cat-inner"><span class="pt-cat-num">02</span> BIOS, разгон и стабильность</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Настройка BIOS</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-plus">+</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Базовый разгон</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-plus">+</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Настройка сети</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-plus">+</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Проверка стабильности системы</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-plus">+</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-check">✓</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
 
+              <!-- 03 Диагностика и оптимизация -->
+              <tr class="pt-cat-row">
+                <td colspan="4"><span class="pt-cat-inner"><span class="pt-cat-num">03</span> Диагностика и оптимизация</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Диагностика узких мест ПК</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Расширенная настройка железа</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Отчет о слабых местах</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Проверка температур и стресс-тесты</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Рекомендации по апгрейду</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+
+              <!-- 04 Стриминг и поддержка -->
+              <tr class="pt-cat-row">
+                <td colspan="4"><span class="pt-cat-inner"><span class="pt-cat-num">04</span> Стриминг и поддержка</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Настройка OBS и дополнительного ПО</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Тест игры под нагрузкой OBS</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+              <tr class="pt-data-row">
+                <td>Поддержка 3 месяца</td>
+                <td class="pt-cell-center pt-col-0"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-1"><span class="pt-cell-dash">—</span></td>
+                <td class="pt-cell-center pt-col-2"><span class="pt-cell-check">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <!-- Right: detail panel -->
+      <div class="pt-detail" id="pt-detail">
+        <div class="pt-detail-tag-row">
+          <span class="pt-detail-arrow">↗</span>
+          <span class="pt-detail-tag">Твой выбор</span>
+        </div>
+        <div class="pt-detail-name" id="pd-name">Базовый</div>
+        <div class="pt-detail-desc" id="pd-desc">Чистая система и базовая оптимизация для игры.</div>
+        <div class="pt-detail-count-row">
+          <span class="pt-detail-count-label">Состав пакета</span>
+          <span class="pt-detail-count-val" id="pd-count">4 из 16 услуг</span>
+        </div>
+        <div class="pt-detail-bar" id="pd-bar"></div>
+        <ul class="pt-detail-features" id="pd-features"></ul>
+        <div class="pt-detail-support" id="pd-support" style="display:none;">
+          <span class="pt-detail-support-label">Поддержка после настройки</span>
+          <span class="pt-detail-support-val" id="pd-support-val">3 месяца</span>
+        </div>
+        <div class="pt-detail-price" id="pd-price">3 000 <span>₽</span></div>
+        <button class="pt-detail-btn" data-modal="open">
+          <span>Выбрать пакет</span>
+          <span class="pt-detail-btn-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+      </div>
+
     </div>
   </section>
 
 </main>
+
+<!-- ─── MOBILE STICKY CTA ─── -->
+<div class="pt-mobile-cta" id="pt-mobile-cta" aria-hidden="true">
+  <div class="pt-mobile-cta-info">
+    <span class="pt-mobile-cta-name" id="pt-mcta-name">Базовый</span>
+    <span class="pt-mobile-cta-price" id="pt-mcta-price">3 000 ₽</span>
+  </div>
+  <button class="pt-mobile-cta-btn" data-modal="open">Выбрать пакет</button>
+</div>
 
 <!-- ─── FOOTER ─── -->
 <footer class="site-footer">
@@ -190,7 +522,7 @@
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="index.html">Главная</a>
         <a href="services.html">Услуги</a>
-        <a href="partners.html">Отзывы</a>
+        <a href="partners.html">С кем работаем</a>
       </nav>
       <div class="footer-socials">
         <a href="https://t.me/" aria-label="Telegram" target="_blank" rel="noopener">
@@ -212,6 +544,9 @@
       </div>
     </div>
   </div>
+  <div class="footer-gun-wrap">
+    <img src="assets/hero-gun.png" alt="" class="footer-gun" aria-hidden="true" />
+  </div>
 </footer>
 
 <!-- ─── MODAL ─── -->
@@ -221,39 +556,21 @@
     <h2>Заявка на настройку</h2>
     <p class="modal-subtitle">Укажи игру, промокод и пожелания — подберём подходящий пакет настройки под твою систему.</p>
     <form id="order-form">
-      <div class="form-grid">
-        <div class="form-field">
-          <label class="form-label" for="name">Имя</label>
-          <input class="form-input" type="text" id="name" name="name" placeholder="Михаил" required />
-        </div>
-        <div class="form-field">
-          <label class="form-label" for="phone">Телефон</label>
-          <input class="form-input" type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" />
-        </div>
+      <div class="form-field" style="margin-bottom:12px;">
+        <label class="form-label" for="name">Имя</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Михаил" required />
+      </div>
+      <div class="form-grid" style="margin-bottom:12px;">
         <div class="form-field">
           <label class="form-label" for="telegram">Telegram</label>
-          <input class="form-input" type="text" id="telegram" name="telegram" placeholder="username" required />
+          <input class="form-input" type="text" id="telegram" name="telegram" placeholder="username" />
         </div>
         <div class="form-field">
-          <label class="form-label" for="extra">Доп. связь</label>
-          <input class="form-input" type="text" id="extra" name="extra" placeholder="WhatsApp, E-mail или др." />
+          <label class="form-label" for="discord">Discord</label>
+          <input class="form-input" type="text" id="discord" name="discord" placeholder="username" />
         </div>
       </div>
-      <div class="form-field" style="margin-bottom:14px;">
-        <label class="form-label" for="game">В какую игру вы играете?</label>
-        <div class="form-select-wrap">
-          <select class="form-select" id="game" name="game">
-            <option value="" disabled selected>Выберите игру</option>
-            <option>CS2</option>
-            <option>Valorant</option>
-            <option>Apex Legends</option>
-            <option>Dota 2</option>
-            <option>Fortnite</option>
-            <option>Другая</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-field" style="margin-bottom:14px;">
+      <div class="form-field" style="margin-bottom:12px;">
         <label class="form-label" for="promo">Промокод</label>
         <input class="form-input" type="text" id="promo" name="promo" placeholder="Например: Kaizenpromocode10" />
       </div>
@@ -272,5 +589,99 @@
 </div>
 
 <script src="js/main.js"></script>
+<script>
+(function () {
+  const PACKAGES = [
+    {
+      name: 'Базовый',
+      desc: 'Чистая система и базовая оптимизация для игры.',
+      count: 4, total: 16,
+      features: ['Чистая установка Windows', 'Актуальные драйверы', 'Оптимизация Windows и CS2'],
+      price: '3 000',
+      support: null
+    },
+    {
+      name: 'Премиум',
+      desc: 'Настройка системы и железа с проверкой стабильности',
+      count: 8, total: 16,
+      features: ['Всё из Базового пакета', 'Настройка BIOS и разгон', 'Оптимизация сети', 'Проверка стабильности'],
+      price: '5 000',
+      support: null
+    },
+    {
+      name: 'Премиум+',
+      desc: 'Полная оптимизация ПК, диагностика и поддержка после настройки.',
+      count: 16, total: 16,
+      features: ['Всё из Премиум пакета', 'Диагностика и настройка железа', 'Стресс-тесты и план апгрейда', 'Настройка и тестирование OBS'],
+      price: '8 000',
+      support: '3 месяца'
+    }
+  ];
+
+  const pkgEls = document.querySelectorAll('.pt-pkg');
+  const thEls  = [document.getElementById('th-0'), document.getElementById('th-1'), document.getElementById('th-2')];
+  const colCells = [
+    document.querySelectorAll('.pt-col-0'),
+    document.querySelectorAll('.pt-col-1'),
+    document.querySelectorAll('.pt-col-2')
+  ];
+
+  const mctaName  = document.getElementById('pt-mcta-name');
+  const mctaPrice = document.getElementById('pt-mcta-price');
+
+  const pdName    = document.getElementById('pd-name');
+  const pdDesc    = document.getElementById('pd-desc');
+  const pdCount   = document.getElementById('pd-count');
+  const pdBar     = document.getElementById('pd-bar');
+  const pdFeatures= document.getElementById('pd-features');
+  const pdSupport = document.getElementById('pd-support');
+  const pdSupportVal = document.getElementById('pd-support-val');
+  const pdPrice   = document.getElementById('pd-price');
+
+  function buildBar(count, total) {
+    pdBar.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const seg = document.createElement('div');
+      seg.className = 'pt-bar-seg' + (i < count ? ' filled' : '');
+      pdBar.appendChild(seg);
+    }
+  }
+
+  function selectPkg(idx) {
+    const pkg = PACKAGES[idx];
+
+    pkgEls.forEach((el, i) => el.classList.toggle('active', i === idx));
+    thEls.forEach((th, i) => th && th.classList.toggle('active', i === idx));
+    colCells.forEach((cells, i) => {
+      cells.forEach(td => td.classList.toggle('pt-col-active', i === idx));
+    });
+
+    if (mctaName) mctaName.textContent = pkg.name;
+    if (mctaPrice) mctaPrice.textContent = pkg.price + ' ₽';
+
+    pdName.textContent    = pkg.name;
+    pdDesc.textContent    = pkg.desc;
+    pdCount.textContent   = pkg.count + ' из ' + pkg.total + ' услуг';
+    pdPrice.innerHTML     = pkg.price + ' <span>₽</span>';
+
+    buildBar(pkg.count, pkg.total);
+
+    pdFeatures.innerHTML = pkg.features.map(f => '<li>' + f + '</li>').join('');
+
+    if (pkg.support) {
+      pdSupport.style.display = 'flex';
+      pdSupportVal.textContent = pkg.support;
+    } else {
+      pdSupport.style.display = 'none';
+    }
+  }
+
+  pkgEls.forEach((el, i) => {
+    el.addEventListener('click', () => selectPkg(i));
+  });
+
+  selectPkg(0);
+})();
+</script>
 </body>
 </html>
